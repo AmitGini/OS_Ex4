@@ -1,67 +1,28 @@
-#include <iostream>
-#include <vector>
-#include <random>
-#include <ctime>
-#include <unistd.h>
-#include <cstdlib>
-#include <algorithm>
 #include "Graph.hpp"
+#include <iostream>
 
-void usage() {
-    std::cerr << "Usage: -v <vertices> -e <edges> -s <seed>" << std::endl;
-}
-
-int main(int argc, char *argv[])
+int main()
 {
-    int vertices = 0;
-    int edges = 0;
-    int argSeed = 0;
+    int vertices = 5;
+    Graph g(vertices);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(1, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 0);
+
+    // Adding another graph with an Eulerian cycle
+    Graph h(vertices);
+    h.addEdge(0, 1);
+    h.addEdge(1, 2);
+    h.addEdge(2, 3);
+    h.addEdge(3, 4);
+    h.addEdge(4, 0); // This completes the cycle, connecting back to the start
+
+    g.printEulerianCycle();
+    h.printEulerianCycle();    
+
     
-    int opt;
-    try{
-        while ((opt = getopt(argc, argv, "v:e:s:")) != -1) {
-            switch (opt) {
-                case 'v':
-                    vertices = std::stoi(optarg);
-                    break;
-                case 'e':
-                    edges = std::stoi(optarg);
-                    break;
-                case 's':
-                    argSeed = std::stoi(optarg);
-                    break;
-                default:
-                    usage();
-                    return EXIT_FAILURE;
-            }
-        }
-    }catch(std::exception &e){
-        usage();
-        return EXIT_FAILURE;
-    }
-
-    if (vertices <= 0 || edges <= 0 || argSeed <= 0) {
-        usage();
-        return EXIT_FAILURE;
-    }
-
-    int seedTime = static_cast<int>(std::time(0)); // Use current time
-    int seed = argSeed + seedTime; // Combine seed from argument and current time
-    std::mt19937 rng(seed); // Mersenne Twister random number generator
-    std::uniform_int_distribution<int> vertex_dist(0, vertices - 1);
-
-    Graph graph(vertices);
-
-    // Adding random edges
-    for (int i = 0; i < edges; ++i) {
-        int u = vertex_dist(rng);
-        int v = vertex_dist(rng);
-        std::cout<<"("<<u<<", "<<v<<")"<<std::endl;
-        graph.addEdge(u, v);
-    }
-
-    std::cout << "Checking for Eulerian Cycle..." << std::endl;
-    graph.printEulerianCycle();
-
     return 0;
 }
