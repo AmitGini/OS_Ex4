@@ -12,17 +12,5 @@ int main()
     g.addEdge(3, 4);
     g.addEdge(4, 0);
 
-    // Adding another graph with an Eulerian cycle
-    Graph h(vertices);
-    h.addEdge(0, 1);
-    h.addEdge(1, 2);
-    h.addEdge(2, 3);
-    h.addEdge(3, 4);
-    h.addEdge(4, 0); // This completes the cycle, connecting back to the start
-
-    g.printEulerianCycle();
-    h.printEulerianCycle();    
-
-    
     return 0;
 }
