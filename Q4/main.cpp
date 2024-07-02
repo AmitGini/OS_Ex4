@@ -4,6 +4,7 @@ No need to run make graph before running the following tests checks
 Coverage Target: coverage: Adds COVFLAGS for code coverage, runs the executable, and generates gcov reports.
 Using lcov to generate html with easy gui code coverage
 make coverage  // it run the gcov and after that lcov for easy gui code coverage
+then enter coverage->html->index.html
 
 
 Profiling Target: profile: Adds PROFFLAGS for profiling, runs the executable, and generates a gprof report.
