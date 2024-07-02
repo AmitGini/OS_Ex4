@@ -4,7 +4,21 @@
 #include <stack>
 #include <algorithm>
 
-Graph::Graph(int vertices) : vertices(vertices), adjMatrix(vertices, std::vector<int>(vertices, 0)) {}
+Graph::Graph(int vertices) : vertices(vertices), adjMatrix(vertices, std::vector<int>(vertices, 0)) {
+    for(std::vector<int> &i : adjMatrix) {
+        for(int &j : i) {
+            j = 0;
+        }
+    }
+}
+
+Graph::~Graph() {
+    for(std::vector<int> &i : adjMatrix) {
+        for(int &j : i) {
+            j = 0;
+        }
+    }
+}
 
 void Graph::addEdge(int u, int v)
 {
@@ -53,43 +67,6 @@ bool Graph::isEulerian()
     return true;
 }
 
-
-// void Graph::printEulerianCycle()
-// {
-//     if (!isEulerian())
-//     {
-//         std::cout << "Graph is not Eulerian\n";
-//         return;
-//     }
-//     std::stack<int> curr_path;
-//     std::vector<int> circuit;
-//     curr_path.push(0);
-//     int curr_v = 0;
-//     while (!curr_path.empty())
-//     {
-//         if (adjMatrix[curr_v].empty())
-//         {
-//             circuit.push_back(curr_v);
-//             curr_v = curr_path.top();
-//             curr_path.pop();
-//         }
-//         else
-//         {
-//             curr_path.push(curr_v);
-//             int next_v = adjMatrix[curr_v].back();
-//             adjMatrix[curr_v].pop_back();
-//             auto it = std::find(adjMatrix[next_v].begin(), adjMatrix[next_v].end(), curr_v);
-//             if (it != adjMatrix[next_v].end()) {
-//                 adjMatrix[next_v].erase(it);
-//             }
-//             curr_v = next_v;
-//         }
-//     }
-//     for (int i = circuit.size() - 1; i >= 0; i--)
-//     {
-//         std::cout << circuit[i] << (i ? " -> " : "\n");
-//     }
-// }
 void Graph::printEulerianCycle()
 {
     if (!isEulerian())
