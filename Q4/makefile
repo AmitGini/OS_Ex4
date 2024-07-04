@@ -43,6 +43,7 @@ valgrind: $(MAIN_TARGET)
 callgrind: CFLAGS += $(DEBUGFLAGS)
 callgrind: $(MAIN_TARGET)
 	valgrind --tool=callgrind ./$(MAIN_TARGET) -v 5 -e 10 -s 12345
+	callgrind_annotate callgrind.out.* --inclusive=yes --tree=both | grep -v build | less
 	callgrind_annotate callgrind.out.* > callgrind_report.txt
 
 clean:
