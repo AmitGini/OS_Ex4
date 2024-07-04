@@ -17,6 +17,19 @@ Valgrind Call Graph Target:
 callgrind: Adds DEBUGFLAGS for debugging symbols, runs Valgrind with Callgrind tool, and generates a callgrind report.
 make callgrind
 
+diff option - need to check:
+valgrind --tool=callgrind ./graph -v 5 -e 10 -s 12345
+callgrind_annotate callgrind.out.* --inclusive=yes --tree=both | grep -v build | less
+Notes!
+
+greop -v build := to return all the line with the word build, to focus as much as we can at the function of the program and not on 
+                    librarys that we use on our code.
+less := return the data with "less" data, so we can navigate through the data more easly, using
+        'space' to move to next page, b back page, q to quit.
+
+******* TO-DO ************
+- Add iteration to measure the time complexity using gprof
+- Add Notes, Some guide how to read the data and analyize it.
 */
 
 #include <iostream>
