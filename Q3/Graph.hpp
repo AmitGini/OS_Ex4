@@ -15,7 +15,7 @@ public:
     Graph(int vertices);
     void addEdge(int u, int v);
     bool isEulerian();
-    void printEulerianCycle();
+    void eulerianCycle();
 };
 
 #endif

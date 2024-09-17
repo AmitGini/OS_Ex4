@@ -3,17 +3,17 @@
 
 #include <vector>
 
+// Undirect Graph class
 class Graph
 {
 private:
-    int vertices;
-    std::vector<std::vector<int>> adjMatrix;
+    int vertices;  // Number of vertices
+    std::vector<std::vector<int>> adjMatrix;  // Adjacency matrix
 
 
 public:
-    Graph(int vertices);
-    void addEdge(int u, int v);
-
+    Graph(int vertices);  // Constructor
+    void addEdge(int u, int v);  // Add edge to the undirected graph
 };
 
 #endif

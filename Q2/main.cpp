@@ -5,12 +5,15 @@ int main()
 {
     int vertices = 5;
     Graph g(vertices);
+    g.addEdge(0, 0);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
     g.addEdge(1, 2);
+    g.addEdge(0, -1);
     g.addEdge(1, 3);
     g.addEdge(3, 4);
     g.addEdge(4, 0);
+    g.addEdge(5, 2);
 
     // Adding another graph with an Eulerian cycle
     Graph h(vertices);
@@ -20,9 +23,8 @@ int main()
     h.addEdge(3, 4);
     h.addEdge(4, 0); // This completes the cycle, connecting back to the start
 
-    g.printEulerianCycle();
-    h.printEulerianCycle();    
+    g.eulerianCycle();
+    h.eulerianCycle();    
 
-    
     return 0;
 }

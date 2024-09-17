@@ -7,16 +7,19 @@
 #include <algorithm>
 #include "Graph.hpp"
 
+// Function to print usage incase of invalid arguments
 void usage() {
     std::cerr << "Usage: -v <vertices> -e <edges> -s <seed>" << std::endl;
 }
 
 int main(int argc, char *argv[])
 {
+    // Variables to store command line arguments
     int vertices = 0;
     int edges = 0;
     int argSeed = 0;
     
+    // Parse command line arguments
     int opt;
     try{
         while ((opt = getopt(argc, argv, "v:e:s:")) != -1) {
@@ -35,12 +38,13 @@ int main(int argc, char *argv[])
                     return EXIT_FAILURE;
             }
         }
-    }catch(std::exception &e){
+    }catch(std::exception &e){ // Check if all arguments are provided
         usage();
         return EXIT_FAILURE;
     }
 
-    if (vertices <= 0 || edges <= 0 || argSeed <= 0) {
+    // Check if all arguments are provided
+    if (vertices <= 0 || edges <= 0 || argSeed < 0) {
         usage();
         return EXIT_FAILURE;
     }
@@ -56,12 +60,11 @@ int main(int argc, char *argv[])
     for (int i = 0; i < edges; ++i) {
         int u = vertex_dist(rng);
         int v = vertex_dist(rng);
-        std::cout<<"("<<u<<", "<<v<<")"<<std::endl;
         graph.addEdge(u, v);
     }
 
     std::cout << "Checking for Eulerian Cycle..." << std::endl;
-    graph.printEulerianCycle();
+    graph.eulerianCycle();
 
     return 0;
 }

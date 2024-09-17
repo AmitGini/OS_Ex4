@@ -4,7 +4,6 @@ No need to run make graph before running the following tests checks
 Coverage Target: coverage: Adds COVFLAGS for code coverage, runs the executable, and generates gcov reports.
 Using lcov to generate html with easy gui code coverage
 make coverage  // it run the gcov and after that lcov for easy gui code coverage
-then enter coverage->html->index.html
 
 
 Profiling Target: profile: Adds PROFFLAGS for profiling, runs the executable, and generates a gprof report.
@@ -17,19 +16,6 @@ Valgrind Call Graph Target:
 callgrind: Adds DEBUGFLAGS for debugging symbols, runs Valgrind with Callgrind tool, and generates a callgrind report.
 make callgrind
 
-diff option - need to check:
-valgrind --tool=callgrind ./graph -v 5 -e 10 -s 12345
-callgrind_annotate callgrind.out.* --inclusive=yes --tree=both | grep -v build | less
-Notes!
-
-greop -v build := to return all the line with the word build, to focus as much as we can at the function of the program and not on 
-                    librarys that we use on our code.
-less := return the data with "less" data, so we can navigate through the data more easly, using
-        'space' to move to next page, b back page, q to quit.
-
-******* TO-DO ************
-- Add iteration to measure the time complexity using gprof
-- Add Notes, Some guide how to read the data and analyize it.
 */
 
 #include <iostream>
@@ -95,7 +81,7 @@ int main(int argc, char *argv[])
     }
 
     std::cout << "Checking for Eulerian Cycle..." << std::endl;
-    graph.printEulerianCycle();
+    graph.eulerianCycle();
 
     // Graph case odd degree
     int verOddDegree = 4;
@@ -103,12 +89,12 @@ int main(int argc, char *argv[])
     oddDegree.addEdge(0, 1);
     oddDegree.addEdge(0, 2);
     oddDegree.addEdge(0, 3);
-    oddDegree.printEulerianCycle();
+    oddDegree.eulerianCycle();
 
     // Graph case, unconnected
     int verUnconnected = 3;
     Graph unConnectedGraph(verUnconnected);
-    unConnectedGraph.printEulerianCycle();
+    unConnectedGraph.eulerianCycle();
 
     // Graph case found Eulerian cycle
     int verEulerGRaph = 5;
@@ -118,7 +104,7 @@ int main(int argc, char *argv[])
     eulerGraph->addEdge(2, 3);
     eulerGraph->addEdge(3, 4);
     eulerGraph->addEdge(4, 0); // This completes the cycle, connecting back to the start
-    eulerGraph->printEulerianCycle(); 
+    eulerGraph->eulerianCycle(); 
     delete eulerGraph;
 
 

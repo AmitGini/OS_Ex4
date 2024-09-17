@@ -8,14 +8,13 @@ class Graph
 private:
     int vertices;
     std::vector<std::vector<int>> adjMatrix;
-    
+    bool isEulerian();
     void DFS(int v, std::vector<bool> &visited);
 
 public:
     Graph(int vertices);
     void addEdge(int u, int v);
-    bool isEulerian();
-    void printEulerianCycle();
+    void eulerianCycle();
 };
 
 #endif

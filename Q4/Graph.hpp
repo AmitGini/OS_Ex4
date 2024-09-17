@@ -15,7 +15,7 @@ public:
     Graph(int vertices);
     ~Graph();
     void addEdge(int u, int v);
-    void printEulerianCycle();
+    void eulerianCycle();
 };
 
 #endif
