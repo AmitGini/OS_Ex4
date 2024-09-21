@@ -1,0 +1,55 @@
+Analysis
+
+--------------------------------------------------------------------------------
+Profile data file And Ir(Instruction Count)- Key Concepts
+--------------------------------------------------------------------------------
+
+Summary of the key points from the callgrind report:
+
+    - Program Profiled:
+        The executable named ./graph was run with parameters indicating 5 vertices, 10 edges, and a seed of 12345.
+    
+    - Trigger for Profiling:
+        The profiling ended when the program terminated, covering a basic block range 0 - 418248.
+    
+    - Instruction Count:
+        The program executed 2,606,691 instructions (its the primary events recorded and analyzed).
+
+Goal:
+  The profiler's ability to cover vast numbers of basic blocks and provide detailed data, helps to:
+  1. Optimize the code performance.
+  2. Identifying inefficient sections.
+  3. Understanding the flow of execution across different parts of the application.
+
+--------------------------------------------------------------------------------
+Profile data file 'callgrind.out.9991' (creator: callgrind-3.18.1)
+--------------------------------------------------------------------------------
+I1 cache: 
+D1 cache: 
+LL cache: 
+Timerange: Basic block 0 - 418248
+Trigger: Program termination
+Profiled target:  ./graph -v 5 -e 10 -s 12345 (PID 9991, part 1)
+Events recorded:  Ir
+Events shown:     Ir
+Event sort order: Ir
+Thresholds:       1
+Include dirs:     
+User annotated:   
+Auto-annotation:  on
+
+--------------------------------------------------------------------------------
+Ir                 
+--------------------------------------------------------------------------------
+2,606,691 (100.0%)  PROGRAM TOTALS
+
+--------------------------------------------------------------------------------
+Ir                file:function
+--------------------------------------------------------------------------------
+984,746 (37.78%)  ./elf/./elf/dl-lookup.c:_dl_lookup_symbol_x [/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2]
+
+--------------------------------------------------------------------------------
+The following files chosen for auto-annotation could not be found:
+--------------------------------------------------------------------------------
+  ./elf/./elf/dl-lookup.c
+
